@@ -1,0 +1,30 @@
+<h1>sampleさんようこそ!</h1>
+
+<div class="dashboard-content">
+  <div class="diary-section">
+    <h2>日記の操作</h2>
+    <div class="diary-actions">
+      <%#= link_to "日記を書く", new_post_path, class: "action-button" %>
+      <%#= link_to "日記一覧を見る", posts_path, class: "action-button" %>
+    </div>
+
+    <div class="latest-post-preview">
+      <h3>最新の日記</h3>
+      <p>まだ日記はありません。</p>
+    </div>
+  </div>
+
+  <div class="quiz-section">
+    <h2>クイズに挑戦</h2>
+
+    <div class="quiz-challenge">
+      <%#= link_to "今日のクイズに挑戦！", quiz_challenge_path, class: "big-button primary-color" %>
+      <p>（1日1回限定）</p>
+    </div>
+
+    <div class="score-actions">
+      <%#= link_to "クイズの成績を確認", quiz_scores_path, class: "action-button" %>
+    </div>
+  </div>
+
+</div>
