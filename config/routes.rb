@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  # ダッシュボード（ホーム画面）をアプリのルートに設定
+  devise_for :users
   root 'dashboards#show'
 end
