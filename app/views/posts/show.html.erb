@@ -26,5 +26,5 @@
 
 <div class="postsShow__actions">
   <%= link_to '編集する', edit_post_path(@post), class: "action-button primary-color" %>
-  <%= link_to '削除する', post_path(@post), data: { turbo_method: :delete, turbo_confirm: "本当にこの日記を削除しますか？" }, class: "action-button danger-color" %>
+  <%= link_to '削除する', post_path(@post), data: { "turbo-method": :delete, turbo_confirm: "本当にこの日記を削除しますか？" }, class: "action-button danger-color" %>
 </div>
