@@ -24,9 +24,25 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
+    
+    if @post.user != current_user
+      redirect_to root_path, alert: "他人の日記は編集できません。"
+    end
   end
 
   def update
+    @post = Post.find(params[:id])
+
+    unless @post.user == current_user
+      redirect_to root_path, alert: "他人の日記は編集できません。"
+    end
+
+    if @post.update(post_params)
+      redirect_to post_path(@post), notice: "日記とクイズを更新しました！"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 end
 
