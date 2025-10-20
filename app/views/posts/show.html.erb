@@ -1,6 +1,6 @@
 <div class="postsShow__header">
   <%# 戻るボタン %>
-  <%= link to '日記一覧へ戻る', posts_path %>
+  <%= link_to '日記一覧へ戻る', posts_path %>
 </div>
 
 <h1><%= @post.post_date.strftime("%Y年%m月%d日") %>の日記</h1>
@@ -17,9 +17,9 @@
 
 <div class="postsShow__quizDetails">
   <h2>作成したクイズ</h2>
-  <% if @post.quiz.present? %>
-    <p><strong>質問文:</strong> <%= @post.quiz.question_text %></p>
-    <p><strong>正解:</strong> <%= @post.quiz.correct_answer %></p>
+  <% if @post.daily_quiz.present? %>
+    <p><strong>質問文:</strong> <%= @post.daily_quiz.question_text %></p>
+    <p><strong>正解:</strong> <%= @post.daily_quiz.correct_answer %></p>
   <% else %>
     <p>この日記にはクイズが作成されていません。</p>
   <% end %>
