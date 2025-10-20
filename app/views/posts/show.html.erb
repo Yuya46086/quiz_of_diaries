@@ -1,0 +1,30 @@
+<div class="postsShow__header">
+  <%= link_to '日記一覧へ戻る', posts_path %>
+</div>
+
+<h1><%= @post.post_date.strftime("%Y年%m月%d日") %>の日記</h1>
+
+<div class="postsShow__diaryContent">
+  <p><strong>写真</strong></p>
+  <p><%= image_tag @post.image_url, class: "post-photo" %></p>
+
+  <p><strong>本文</strong></p>
+  <p class="post-text"><%= @post.content %></p>
+</div>
+
+<hr>
+
+<div class="postsShow__quizDetails">
+  <h2>作成したクイズ</h2>
+  <% if @post.daily_quiz.present? %>
+    <p><strong>質問文:</strong> <%= @post.daily_quiz.question_text %></p>
+    <p><strong>正解:</strong> <%= @post.daily_quiz.correct_answer %></p>
+  <% else %>
+    <p>この日記にはクイズが作成されていません。</p>
+  <% end %>
+</div>
+
+<div class="postsShow__actions">
+  <%= link_to '編集する', edit_post_path(@post), class: "action-button primary-color" %>
+  <%= link_to '削除する', post_path(@post), data: { "turbo-method": :delete, turbo_confirm: "本当にこの日記を削除しますか？" }, class: "action-button danger-color" %>
+</div>

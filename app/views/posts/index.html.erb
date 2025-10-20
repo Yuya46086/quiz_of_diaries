@@ -1,0 +1,36 @@
+<h1>日記一覧</h1>
+<div class="postsIndex__header">
+  <%# 日記を新規作成するためのボタン %>
+  <%= link_to '日記を書く', new_post_path, class: 'action-button' %>
+</div>
+
+<hr>
+
+<%# 月別表示のナビゲーションエリア（後でHotwireなどで動的更新化する）%>
+<div class="postsIndex__monthNavigaion">
+  <h2>2025年10月</h2>
+  <p>（月選択機能は後で実装）</p>
+</div>
+
+<div class="postsIndex__list">
+  <% if @posts.any? %>
+   <% @posts.each do |post| %>
+    <%# 各日記をカード形式で表示 %>
+    <div class="postsIndex__postCard">
+      <%# 日記詳細ページへのリンク %>
+      <%= link_to post_path(post), class: "postsIndex__link" do %>
+        <div class="postsIndex__date">
+          <%= post.post_date.strftime("%Y年%m月%d日") %>
+        </div>
+        <div class="postsIndex__contentPreview">
+          <%# 日記本文の冒頭のみを表示 %>
+          <p><%= post.content.truncate(50) %></p>
+        </div>
+      <% end %>
+    </div>
+   <% end %>
+  <% else %>
+    <p>まだ日記がありません。<%= link_to '最初の日記を投稿してみましょう', new_post_path %></p>
+  <% end %>
+</div>
+      

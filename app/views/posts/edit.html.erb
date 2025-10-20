@@ -1,0 +1,63 @@
+<h1>日記とクイズの編集</h1>
+
+<% if @post.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @post.errors.count%>件のエラーで更新できませんでした。</h2>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @post, local: true, class: "postsEdit__form" do |f| %>
+
+  <div class="postsNew__diarySection">
+    <h2>1. 日記の記入（必須）</h2>
+
+    <div class="field">
+      <%= f.label :post_date, "日付" %>
+      <%# デフォルトで今日の日付が入るように設定（コントローラーで設定予定） %>
+      <%= f.date_field :post_date, class: "date-input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :image_url, "写真のアップロード（必須）" %>
+      <%# 現時点ではシンプルな文字列入力にしておき、後でActiveStorageのファイルアップロードに変更 %>
+      <%= f.text_field :image_url, placeholder: "写真のURLまたはファイルパス", class: "text-input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :content, "日記本文" %>
+      <%= f.text_area :content, placeholder: "今日の出来事を詳しく記入してください", class: "text-area" %>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="postsNew__quizSection">
+    <h2>2. クイズの作成（必須）</h2>
+    <p>日記本文から、穴埋めクイズとして出題したい内容を考えてください。</p>
+
+    <%# フォームビルダーを使って、関連モデル（:quiz）のフィールドをネストして作成 %>
+    <%= f.fields_for :daily_quiz, @post.daily_quiz do |q| %>
+      
+      <%= q.hidden_field :id %>
+
+      <div class="field">
+        <%= q.label :question_text, "質問文" %>
+        <%= q.text_field :question_text, placeholder: "例: あの時食べたものは？", class: "text-input" %>
+      </div>
+      
+      <div class="field">
+        <%= q.label :correct_answer, "正解の単語" %>
+        <%= q.text_field :correct_answer, placeholder: "例: ラーメン", class: "text-input" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "更新する", class: "big-button primary-color" %>
+  </div>
+<% end %>
