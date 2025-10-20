@@ -1,2 +1,49 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h1>日記とクイズの編集</h1>
+
+<%= form_with model: @post, local: true, class: "postsEdit__form" do |f| %>
+
+  <div class="postsNew__diarySection">
+    <h2>1. 日記の記入（必須）</h2>
+
+    <div class="field">
+      <%= f.label :post_date, "日付" %>
+      <%# デフォルトで今日の日付が入るように設定（コントローラーで設定予定） %>
+      <%= f.date_field :post_date, class: "date-input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :image_url, "写真のアップロード（必須）" %>
+      <%# 現時点ではシンプルな文字列入力にしておき、後でActiveStorageのファイルアップロードに変更 %>
+      <%= f.text_field :image_url, placeholder: "写真のURLまたはファイルパス", class: "text-input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :content, "日記本文" %>
+      <%= f.text_area :content, placeholder: "今日の出来事を詳しく記入してください", class: "text-area" %>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="postsNew__quizSection">
+    <h2>2. クイズの作成（必須）</h2>
+    <p>日記本文から、穴埋めクイズとして出題したい内容を考えてください。</p>
+
+    <%# フォームビルダーを使って、関連モデル（:quiz）のフィールドをネストして作成します %>
+    <%= f.fields_for :daily_quiz, @post.build_daily_quiz do |q| %>
+      <div class="field">
+        <%= q.label :question_text, "質問文" %>
+        <%= q.text_field :question_text, placeholder: "例: あの時食べたものは？", class: "text-input" %>
+      </div>
+      
+      <div class="field">
+        <%= q.label :correct_answer, "正解の単語" %>
+        <%= q.text_field :correct_answer, placeholder: "例: ラーメン", class: "text-input" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "更新する", class: "big-button primary-color" %>
+  </div>
+<% end %>
