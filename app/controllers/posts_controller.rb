@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.build
-    @post.build_quiz
+    @post.build_daily_quiz
   end
 
   def create
@@ -33,5 +33,5 @@ end
 private
 
 def post_params
-  params.require(:post).permit(:post_date, :image_url, :content, quiz_attributes: [:question_text, :correct_answer])
+  params.require(:post).permit(:post_date, :image_url, :content, daily_quiz_attributes: [:question_text, :correct_answer])
 end

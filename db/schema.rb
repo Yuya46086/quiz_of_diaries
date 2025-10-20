@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_10_20_080006) do
+ActiveRecord::Schema[7.1].define(version: 2025_10_20_083100) do
+  create_table "daily_quizzes", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.text "question_text", null: false
+    t.string "correct_answer", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_daily_quizzes_on_post_id", unique: true
+    t.index ["user_id"], name: "index_daily_quizzes_on_user_id"
+  end
+
   create_table "posts", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.text "content"
@@ -19,17 +30,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_10_20_080006) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
-  end
-
-  create_table "quizzes", charset: "utf8mb3", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "post_id", null: false
-    t.text "question_text", null: false
-    t.string "correct_answer", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_quizzes_on_post_id", unique: true
-    t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_10_20_080006) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "daily_quizzes", "posts"
+  add_foreign_key "daily_quizzes", "users"
   add_foreign_key "posts", "users"
-  add_foreign_key "quizzes", "posts"
-  add_foreign_key "quizzes", "users"
 end

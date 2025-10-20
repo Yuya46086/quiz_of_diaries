@@ -3,6 +3,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_many :posts
-         has_many :quizzes
+         has_many :daily_quizzes
          has_many :quiz_attempts
 end
