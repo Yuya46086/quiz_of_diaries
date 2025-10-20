@@ -42,6 +42,9 @@
 
     <%# フォームビルダーを使って、関連モデル（:quiz）のフィールドをネストして作成 %>
     <%= f.fields_for :daily_quiz, @post.daily_quiz do |q| %>
+      
+      <%= q.hidden_field :id %>
+
       <div class="field">
         <%= q.label :question_text, "質問文" %>
         <%= q.text_field :question_text, placeholder: "例: あの時食べたものは？", class: "text-input" %>
