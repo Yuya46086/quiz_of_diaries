@@ -15,7 +15,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params)
+    quiz_params = post_params[:daily_quiz_attributes].merge(user_id: current_user.id)
+    modified_post_params = post_params.merge(daily_quiz_attributes: quiz_params)
+    @post = current_user.posts.build(modified_post_params)
     if @post.save
       redirect_to posts_path, notice: "日記とクイズを投稿しました！"
     else
@@ -44,10 +46,22 @@ class PostsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-end
 
-private
 
-def post_params
-  params.require(:post).permit(:post_date, :image_url, :content, daily_quiz_attributes: [:question_text, :correct_answer])
+  def destroy
+    @post = Post.find(params[:id])
+
+    unless @post.user == current_user
+      return redirect_to root_path, alert: "他人の日記は削除できません。"
+    end
+
+    @post.destroy
+    redirect_to root_path, notice: "日記を削除しました。"
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:post_date, :image_url, :content, daily_quiz_attributes: [:question_text, :correct_answer, :user_id])
+  end
 end
