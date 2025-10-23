@@ -36,6 +36,10 @@ class QuizAttemptsController < ApplicationController
     @quiz_attempt.is_correct = is_correct
     @quiz_attempt.score_awarded = is_correct ? 10 : 0 # 正解なら10点、不正解なら0点
 
+    # attempt_dateとquestion_orderのセット (バリデーションを満たすため)
+    @quiz_attempt.attempt_date = Date.current
+    @quiz_attempt.question_order = 1 # 今は単一のクイズなので1で固定
+
     if @quiz_attempt.save
       redirect_to root_path, notice: "解答を保存しました。結果は後ほど確認できます！"
     else
