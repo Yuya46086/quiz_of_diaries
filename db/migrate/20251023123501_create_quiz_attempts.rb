@@ -6,7 +6,6 @@ class CreateQuizAttempts < ActiveRecord::Migration[7.1]
       t.boolean :is_correct, null: false
       t.date :attempt_date, null: false
       t.integer :question_order, null: false
-      t.string :user_answer, null: false
 
       t.timestamps
     end
