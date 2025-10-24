@@ -48,6 +48,8 @@
 | is_correct     | boolean    | null: false                    |
 | attempt_date   | date       | null: false                    |
 | question_order | integer    | null: false                    |
+| user_answer    | string     | null: false                    |
+| score_awarded  | integer    |                                |
 
 ### Association
 - belongs_to :user
