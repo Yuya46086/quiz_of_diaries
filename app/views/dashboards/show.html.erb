@@ -32,7 +32,7 @@
 
     <div class="quiz-challenge">
       <%# @remaining_quiz_count はコントローラーで計算済み %>
-      <% if remaining_quiz_count > 0 %>
+      <% if @remaining_quiz_count > 0 %>
         <p class="challenge-status">まだ挑戦できるクイズが **<%= @remaining_quiz_count %>** 個あります！</p>
         <%# new_quiz_attempt_path はクイズ挑戦画面へのルーティング %>
         <%= link_to "新しいクイズに挑戦！", new_quiz_attempt_path, class: "big-button primary-color" %>
