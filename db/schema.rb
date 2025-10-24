@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_10_23_123501) do
+ActiveRecord::Schema[7.1].define(version: 2025_10_24_113836) do
   create_table "daily_quizzes", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
@@ -40,6 +40,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_10_23_123501) do
     t.integer "question_order", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_answer", null: false
     t.index ["daily_quiz_id"], name: "index_quiz_attempts_on_daily_quiz_id"
     t.index ["user_id"], name: "index_quiz_attempts_on_user_id"
   end
