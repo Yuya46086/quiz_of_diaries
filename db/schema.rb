@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_10_20_083100) do
+ActiveRecord::Schema[7.1].define(version: 2025_10_24_134946) do
   create_table "daily_quizzes", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
@@ -32,6 +32,20 @@ ActiveRecord::Schema[7.1].define(version: 2025_10_20_083100) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "quiz_attempts", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "daily_quiz_id", null: false
+    t.boolean "is_correct", null: false
+    t.date "attempt_date", null: false
+    t.integer "question_order", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "user_answer", null: false
+    t.integer "score_awarded", default: 0
+    t.index ["daily_quiz_id"], name: "index_quiz_attempts_on_daily_quiz_id"
+    t.index ["user_id"], name: "index_quiz_attempts_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -47,4 +61,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_10_20_083100) do
   add_foreign_key "daily_quizzes", "posts"
   add_foreign_key "daily_quizzes", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "quiz_attempts", "daily_quizzes"
+  add_foreign_key "quiz_attempts", "users"
 end
