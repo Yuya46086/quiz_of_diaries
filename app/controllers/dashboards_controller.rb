@@ -1,4 +1,6 @@
 class DashboardsController < ApplicationController
+  before_action :authenticate_user!
+
   def show
     # 最新のクイズ挑戦結果を1件取得
     @latest_attempt = current_user.quiz_attempts.order(created_at: :desc).first
