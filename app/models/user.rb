@@ -5,4 +5,8 @@ class User < ApplicationRecord
          has_many :posts
          has_many :daily_quizzes
          has_many :quiz_attempts
+
+  def total_score
+    quiz_attempts.sum(:score_awarded)
+  end 
 end
