@@ -74,6 +74,7 @@ body {
   margin-top: 10px;
 }
 
+/* ヘッダーのスタイル */
 .main-header {
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* わずかな影 */
@@ -98,4 +99,38 @@ body {
   text-decoration: none;
   color: #333;
   font-size: 14px;
+}
+
+/* エラーメッセージのスタイル */
+#error_explanation {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+#error_explanation h2 {
+  font-size: 18px;
+  margin-top: 0;
+  color: #721c24;
+}
+
+#error_explanation ul {
+  margin: 10px 0 0 20px;
+  padding: 0;
+  list-style-type: disc; /* リストの点を表示 */
+}
+
+/* バリデーションエラーが発生したフィールドのスタイル */
+.field_with_errors {
+  padding: 2px;
+  background-color: #fff0f3;
+}
+
+.field_with_errors .text-input,
+.field_with_errors .date-input,
+.field_with_errors .text-area {
+    border: 2px solid #dc3545;
 }
