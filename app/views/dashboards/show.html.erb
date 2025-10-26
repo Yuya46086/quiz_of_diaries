@@ -52,12 +52,18 @@
         <% else %>
           <p class="result-message incorrect">😥 **不正解です。** 0点でした。</p>
         <% end %>
-        
         <p><strong>出題:</strong> <%= @latest_attempt.daily_quiz.question_text.truncate(30) %></p>
         <p><strong>あなたの解答:</strong> <%= @latest_attempt.user_answer %></p>
       <% else %>
         <p>まだクイズに挑戦していません。</p>
       <% end %>
+    </div>
+
+    <div class="user-stats">
+      <h4>合計獲得スコア</h4>
+      <p class="score-display">
+        <%= current_user.total_score %>点
+      </p>
     </div>
   </div>
 
