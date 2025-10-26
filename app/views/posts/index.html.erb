@@ -20,7 +20,11 @@
       <%# 日記詳細ページへのリンク %>
       <%= link_to post_path(post), class: "postsIndex__link" do %>
         <div class="postsIndex__date">
-          <%= post.post_date.strftime("%Y年%m月%d日") %>
+          <% if post.post_date.present? %>
+            <%= post.post_date.strftime("%Y年%m月%d日") %>
+          <% else %>
+            日付未設定
+          <% end %>
         </div>
         <div class="postsIndex__contentPreview">
           <%# 日記本文の冒頭のみを表示 %>
@@ -33,4 +37,3 @@
     <p>まだ日記がありません。<%= link_to '最初の日記を投稿してみましょう', new_post_path %></p>
   <% end %>
 </div>
-      
