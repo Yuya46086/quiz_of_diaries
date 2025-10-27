@@ -40,19 +40,20 @@
     <h2>2. クイズの作成（必須）</h2>
     <p>日記本文から、穴埋めクイズとして出題したい内容を考えてください。</p>
 
-    <%# フォームビルダーを使って、関連モデル（:quiz）のフィールドをネストして作成します %>
-    <%= f.fields_for :daily_quiz, @post.build_daily_quiz do |q| %>
-      <div class="field">
+    <%= f.fields_for :daily_quiz, @post.daily_quiz || @post.build_daily_quiz do |q| %>
+      <div class="<%= 'field-error' if q.object.errors.messages[:question_text].present? %>">
         <%= q.label :question_text, "質問文" %>
         <%= q.text_field :question_text, placeholder: "例: あの時食べたものは？", class: "text-input" %>
+        <%= render 'layouts/field_error', object: q.object, field: :question_text %>
       </div>
-      
-      <div class="field">
+
+      <div class="<%= 'field-error' if q.object.errors.messages[:correct_answer].present? %>">
         <%= q.label :correct_answer, "正解の単語" %>
         <%= q.text_field :correct_answer, placeholder: "例: ラーメン", class: "text-input" %>
+        <%= render 'layouts/field_error', object: q.object, field: :correct_answer %>
       </div>
     <% end %>
-  </div>
+</div>
 
   <div class="actions">
     <%= f.submit "投稿する", class: "big-button primary-color" %>

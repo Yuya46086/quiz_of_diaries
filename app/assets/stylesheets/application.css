@@ -133,4 +133,38 @@ body {
 .field_with_errors .date-input,
 .field_with_errors .text-area {
     border: 2px solid #dc3545;
+    background-color: #fff0f3;
+}
+
+div.field_with_errors input[type="text"],
+div.field_with_errors input[type="date"] {
+  border: 2px solid #dc3545;
+  background-color: #fff0f3;
+}
+
+/* 新しいエラー表示の親要素 */
+.field-error {
+    /* これでフィールドにスペースが生まれ、エラーが分かりやすくなる */
+    background-color: #fff0f3; /* ★この行を追加/修正★ */
+    padding: 5px; /* パディングを修正し、背景色が表示されやすくする */
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+
+/* field-error の中にある入力欄を強調 */
+.field-error .text-input {
+    border: 2px solid #dc3545 !important; /* 赤い枠線 */
+}
+
+/* フィールドごとのエラーメッセージのスタイル */
+.error-message {
+    color: #dc3545; /* 赤い文字 */
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* 横並びを防ぐため、各フィールドをブロック要素に戻す */
+.postsNew__quizSection > div {
+    display: block !important;
+    margin-bottom: 15px;
 }
