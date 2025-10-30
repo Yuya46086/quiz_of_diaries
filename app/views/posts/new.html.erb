@@ -44,13 +44,11 @@
       <div class="<%= 'field-error' if q.object.errors.messages[:question_text].present? %>">
         <%= q.label :question_text, "質問文" %>
         <%= q.text_field :question_text, placeholder: "例: あの時食べたものは？", class: "text-input" %>
-        <%= render 'layouts/field_error', object: q.object, field: :question_text %>
       </div>
 
       <div class="<%= 'field-error' if q.object.errors.messages[:correct_answer].present? %>">
         <%= q.label :correct_answer, "正解の単語" %>
         <%= q.text_field :correct_answer, placeholder: "例: ラーメン", class: "text-input" %>
-        <%= render 'layouts/field_error', object: q.object, field: :correct_answer %>
       </div>
     <% end %>
 </div>
