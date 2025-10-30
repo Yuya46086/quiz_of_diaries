@@ -7,6 +7,6 @@ class RankingsController < ApplicationController
               .group(:id)
               .select('users.*, SUM(COALESCE(quiz_attempts.score_awarded, 0)) AS total_score')
               .order('total_score DESC')
-              .limit(10) # トップ10を表示
+              .limit(10)
   end
 end

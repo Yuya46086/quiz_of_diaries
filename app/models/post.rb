@@ -4,6 +4,7 @@ class Post < ApplicationRecord
 
   validates :post_date, presence: true
   validates :content, presence: true
+  validates :image_url, presence: true
 
   accepts_nested_attributes_for :daily_quiz
 end

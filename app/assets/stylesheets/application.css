@@ -1,15 +1,225 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+/* 全体設定とフォントのリセット */
+body {
+  font-family: sans-serif; /* シンプルなフォントを設定 */
+  background-color: #f7f9fc;
+  margin: 0;
+  padding: 0
+}
+
+.container {
+  max-width: 1000px; /* コンテンツの最大幅 */
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+/* 共通の色の定義 */
+.primary-color { /* 主な操作（投稿、挑戦）に使う色 */
+  background-color: #007bff;
+  color: white !important; /* 文字色を白に強制 */
+}
+
+.danger-color { /* 削除や危険な操作に使う色 */
+  background-color: #dc3545;
+  color: white !important;
+}
+
+/* 共通ボタンのスタイル */
+.action-button, .big-button {
+  display: inline-block;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none; /* リンクの下線を消す */
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s; /* ホバー時の滑らかな変化 */
+}
+
+.action-button:hover, .big-button:hover {
+  opacity: 0.85;
+}
+
+.big-button {
+  font-size: 18px;
+  padding: 15px 25px;
+  min-width: 200px;
+}
+
+/* フラッシュメッセージのスタイル */
+.flash-messages {
+  position: fixed; /* 画面上の固定位置 */
+  top: 60px; /* ヘッダーの下あたり */
+  left: 50%;
+  transform: translateX(-50%); /* 中央寄せ */
+  z-index: 1000;
+}
+
+.flash-notice {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;  
+}
+
+.flash-alert {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+/* ヘッダーのスタイル */
+.main-header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* わずかな影 */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+.site-title a {
+  font-size: 24px;
+  font-weight: 900;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.main-nav a, .main-nav button {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+/* エラーメッセージのスタイル */
+#error_explanation {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+#error_explanation h2 {
+  font-size: 18px;
+  margin-top: 0;
+  color: #721c24;
+}
+
+#error_explanation ul {
+  margin: 10px 0 0 20px;
+  padding: 0;
+  list-style-type: disc; /* リストの点を表示 */
+}
+
+/* バリデーションエラーが発生したフィールドのスタイル */
+.field_with_errors {
+  padding: 2px;
+  background-color: #fff0f3;
+}
+
+.field_with_errors .text-input,
+.field_with_errors .date-input,
+.field_with_errors .text-area {
+    border: 2px solid #dc3545;
+    background-color: #fff0f3;
+}
+
+div.field_with_errors input[type="text"],
+div.field_with_errors input[type="date"] {
+  border: 2px solid #dc3545;
+  background-color: #fff0f3;
+}
+
+/* 新しいエラー表示の親要素 */
+.field-error {
+    /* これでフィールドにスペースが生まれ、エラーが分かりやすくなる */
+    background-color: #fff0f3; /* ★この行を追加/修正★ */
+    padding: 5px; /* パディングを修正し、背景色が表示されやすくする */
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+
+/* field-error の中にある入力欄を強調 */
+.field-error .text-input {
+    border: 2px solid #dc3545 !important; /* 赤い枠線 */
+}
+
+/* フィールドごとのエラーメッセージのスタイル */
+.error-message {
+    color: #dc3545; /* 赤い文字 */
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* 横並びを防ぐため、各フィールドをブロック要素に戻す */
+.postsNew__quizSection > div {
+    display: block !important;
+    margin-bottom: 15px;
+}
+
+/* 月選択コンテナの基本的なスタイル */
+.postsIndex__monthNavigaion {
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.postsIndex__monthNavigaion h2 {
+    font-size: 1.5rem; /* 見やすいサイズ */
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* 月リンク全体のコンテナ */
+.month-selector {
+    display: flex; /* リンクを横並びにする */
+    gap: 10px; /* リンク間のスペース */
+    flex-wrap: wrap; /* 画面幅が狭いときに折り返す */
+}
+
+/* 個々の月リンクのスタイル */
+.month-link {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* 角を丸くする */
+    text-decoration: none;
+    color: #555;
+    background-color: #f9f9f9; /* 通常時の背景色 */
+    transition: all 0.2s ease-in-out; /* ホバー時の滑らかな変化 */
+    font-size: 14px;
+}
+
+/* ホバー時のスタイル */
+.month-link:hover {
+    background-color: #e9ecef;
+    border-color: #aaa;
+    color: #333;
+}
+
+/* ★★★ 現在選択中の月のスタイル (強調) ★★★ */
+.month-link.active {
+    background-color: #007bff; /* primary-colorと同じ青色 */
+    color: white; /* 文字色を白に */
+    border-color: #007bff;
+    font-weight: bold; /* 太字でさらに強調 */
+    cursor: default; /* クリックできないようにカーソルを変更 */
+}
+
+/* 選択中の月はホバーしても色を変えない */
+.month-link.active:hover {
+    background-color: #007bff;
+    color: white;
+}

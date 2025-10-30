@@ -12,11 +12,11 @@
   <body>
     <header class="main-header">
       <div class="site-title">
-        <%= link_to "日記クイズ", root_path %>
+        <%= link_to "Quiz of Diaries", root_path %>
       </div>
       <nav class="main-nav">
         <% if user_signed_in? %>
-          <%= link_to "ダッシュボード", root_path %>
+          <%= link_to "ホーム", root_path %>
           <%= link_to "日記一覧", posts_path %>
           <%= link_to "日記を書く", new_post_path %>
           <%= button_to "ログアウト", destroy_user_session_path, method: :delete %>

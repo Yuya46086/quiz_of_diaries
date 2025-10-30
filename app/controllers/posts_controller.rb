@@ -2,7 +2,17 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = current_user.posts.order(post_date: :desc)
+    @selected_year = params[:year].present? ? params[:year].to_i : Time.zone.now.year
+    @selected_month = params[:month].present? ? params[:month].to_i : Time.zone.now.month
+    
+    start_date = Time.zone.local(@selected_year, @selected_month, 1).beginning_of_day
+    end_date = start_date.end_of_month.end_of_day
+    
+    @posts = current_user.posts
+                         .where(post_date: start_date..end_date)
+                         .order(post_date: :desc)
+    
+    @available_months = generate_month_list
   end
 
   def show
@@ -19,7 +29,7 @@ class PostsController < ApplicationController
     modified_post_params = post_params.merge(daily_quiz_attributes: quiz_params)
     @post = current_user.posts.build(modified_post_params)
     if @post.save
-      redirect_to posts_path, notice: "日記とクイズを投稿しました！"
+      redirect_to posts_path(@post), notice: "日記の投稿とクイズの作成に成功しました！新しいクイズに挑戦してみましょう！"
     else
       render :new, status: :unprocessable_entity
     end
@@ -63,5 +73,14 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:post_date, :image_url, :content, daily_quiz_attributes: [:id, :question_text, :correct_answer, :user_id])
+  end
+
+  def generate_month_list
+    months = []
+    6.times do |i|
+      date = Time.zone.now.months_ago(i)
+      months << { year: date.year, month: date.month, display: date.strftime("%Y年%m月") }
+    end
+    months.reverse
   end
 end

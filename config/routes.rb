@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   devise_for :users
   root 'dashboards#show'
   resources :posts
-  resources :quiz_attempts, only: [:new, :create]
+  resources :quiz_attempts, only: [:index, :new, :create]
 end
