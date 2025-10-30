@@ -1,23 +1,30 @@
 <h1>日記一覧</h1>
 <div class="postsIndex__header">
-  <%# 日記を新規作成するためのボタン %>
   <%= link_to '日記を書く', new_post_path, class: 'action-button' %>
 </div>
 
 <hr>
 
-<%# 月別表示のナビゲーションエリア（後でHotwireなどで動的更新化する）%>
 <div class="postsIndex__monthNavigaion">
-  <h2>2025年10月</h2>
-  <p>（月選択機能は後で実装）</p>
+  <h2><%= Time.zone.local(@selected_year, @selected_month).strftime("%Y年%m月") %></h2>
+  
+  <div class="month-selector">
+    <% @available_months.each do |month_info| %>
+      
+      <% is_active = (month_info[:year] == @selected_year && month_info[:month] == @selected_month) %>
+      
+      <%= link_to month_info[:display], 
+                  posts_path(year: month_info[:year], month: month_info[:month]),
+                  class: "month-link #{'active' if is_active}" %>
+                  
+    <% end %>
+  </div>
 </div>
 
 <div class="postsIndex__list">
   <% if @posts.any? %>
    <% @posts.each do |post| %>
-    <%# 各日記をカード形式で表示 %>
     <div class="postsIndex__postCard">
-      <%# 日記詳細ページへのリンク %>
       <%= link_to post_path(post), class: "postsIndex__link" do %>
         <div class="postsIndex__date">
           <% if post.post_date.present? %>

@@ -168,3 +168,58 @@ div.field_with_errors input[type="date"] {
     display: block !important;
     margin-bottom: 15px;
 }
+
+/* 月選択コンテナの基本的なスタイル */
+.postsIndex__monthNavigaion {
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.postsIndex__monthNavigaion h2 {
+    font-size: 1.5rem; /* 見やすいサイズ */
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* 月リンク全体のコンテナ */
+.month-selector {
+    display: flex; /* リンクを横並びにする */
+    gap: 10px; /* リンク間のスペース */
+    flex-wrap: wrap; /* 画面幅が狭いときに折り返す */
+}
+
+/* 個々の月リンクのスタイル */
+.month-link {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* 角を丸くする */
+    text-decoration: none;
+    color: #555;
+    background-color: #f9f9f9; /* 通常時の背景色 */
+    transition: all 0.2s ease-in-out; /* ホバー時の滑らかな変化 */
+    font-size: 14px;
+}
+
+/* ホバー時のスタイル */
+.month-link:hover {
+    background-color: #e9ecef;
+    border-color: #aaa;
+    color: #333;
+}
+
+/* ★★★ 現在選択中の月のスタイル (強調) ★★★ */
+.month-link.active {
+    background-color: #007bff; /* primary-colorと同じ青色 */
+    color: white; /* 文字色を白に */
+    border-color: #007bff;
+    font-weight: bold; /* 太字でさらに強調 */
+    cursor: default; /* クリックできないようにカーソルを変更 */
+}
+
+/* 選択中の月はホバーしても色を変えない */
+.month-link.active:hover {
+    background-color: #007bff;
+    color: white;
+}
