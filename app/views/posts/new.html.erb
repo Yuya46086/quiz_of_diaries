@@ -23,9 +23,8 @@
     </div>
 
     <div class="field">
-      <%= f.label :image_url, "写真のアップロード（必須）" %>
-      <%# 現時点ではシンプルな文字列入力にしておき、後でActiveStorageのファイルアップロードに変更 %>
-      <%= f.text_field :image_url, placeholder: "写真のURLまたはファイルパス", class: "text-input" %>
+      <%= f.label :photo, "写真のアップロード（必須）" %>
+      <%= f.file_field :photo, class: "text-input" %>
     </div>
 
     <div class="field">
