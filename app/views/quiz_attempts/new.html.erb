@@ -2,10 +2,8 @@
 
 <% if @daily_quiz.present? %>
 
-  <%# クイズ挑戦の結果を保存するためのフォーム %>
   <%= form_with model: @quiz_attempt, local: true do |f| %>
 
-    <%# 隠しフィールド: どのクイズに挑戦しているかをサーバーに伝える %>
     <%= f.hidden_field :daily_quiz_id %>
 
     <div class="quizAttempt__card">
@@ -13,7 +11,12 @@
       
       <div class="quizAttempt__postContent">
         <p><strong>日記本文:</strong></p>
-        <p class="post-text"><%= @daily_quiz.post.content %></p>
+        <% original_content = @daily_quiz.post.content %>
+        <% answer = @daily_quiz.correct_answer %>
+        <% replacement = '---' %>
+        <% masked_content = original_content.gsub(answer, replacement) %>
+        
+        <p class="post-text"><%= masked_content %></p>
       </div>
 
       <hr>
