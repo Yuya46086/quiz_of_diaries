@@ -223,3 +223,32 @@ div.field_with_errors input[type="date"] {
     background-color: #007bff;
     color: white;
 }
+
+/* 編集画面のプレビュー画像用CSS */
+.current-photo-preview {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #eee;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.post-photo-thumb {
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin-top: 5px;
+}
+
+/* 投稿詳細ページ (posts/show) の写真サイズ調整 */
+.post-photo {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    
+    max-height: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    margin-bottom: 20px;
+}

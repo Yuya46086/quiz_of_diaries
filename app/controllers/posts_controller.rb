@@ -72,7 +72,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:post_date, :image_url, :content, daily_quiz_attributes: [:id, :question_text, :correct_answer, :user_id])
+    params.require(:post).permit(:post_date, :photo, :content, daily_quiz_attributes: [:id, :question_text, :correct_answer, :user_id])
   end
 
   def generate_month_list

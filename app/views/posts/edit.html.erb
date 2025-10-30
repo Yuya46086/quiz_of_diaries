@@ -23,10 +23,16 @@
     </div>
 
     <div class="field">
-      <%= f.label :image_url, "写真のアップロード（必須）" %>
-      <%# 現時点ではシンプルな文字列入力にしておき、後でActiveStorageのファイルアップロードに変更 %>
-      <%= f.text_field :image_url, placeholder: "写真のURLまたはファイルパス", class: "text-input" %>
+      <%= f.label :photo, "写真のアップロード（必須）" %>
+      <%= f.file_field :photo, class: "text-input" %>
     </div>
+
+    <% if @post.photo.attached? %>
+      <div class="current-photo-preview">
+        <p>現在の写真:</p>
+        <%= image_tag @post.photo, class: "post-photo-thumb" %>
+      </div>
+    <% end %>
 
     <div class="field">
       <%= f.label :content, "日記本文" %>
@@ -40,7 +46,6 @@
     <h2>2. クイズの作成（必須）</h2>
     <p>日記本文から、穴埋めクイズとして出題したい内容を考えてください。</p>
 
-    <%# フォームビルダーを使って、関連モデル（:quiz）のフィールドをネストして作成 %>
     <%= f.fields_for :daily_quiz, @post.daily_quiz do |q| %>
       
       <%= q.hidden_field :id %>
