@@ -7,7 +7,10 @@
     <%= f.hidden_field :daily_quiz_id %>
 
     <div class="quizAttempt__card">
-      <h2><%= @daily_quiz.post.post_date.strftime("%Y年%m月%d日") %>の日記より出題</h2>
+      <h2>
+        <%= @daily_quiz.post.post_date&.strftime("%Y年%m月%d日") %>
+        の日記より出題
+      </h2>
       
       <div class="quizAttempt__postContent">
         <p><strong>日記本文:</strong></p>

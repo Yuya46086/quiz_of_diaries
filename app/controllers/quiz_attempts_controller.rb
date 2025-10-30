@@ -5,8 +5,10 @@ class QuizAttemptsController < ApplicationController
     user_post_ids = current_user.posts.pluck(:id)
     
     @daily_quiz = DailyQuiz
+                    .joins(:post)
                     .where(post_id: user_post_ids)
                     .where.not(id: current_user.quiz_attempts.pluck(:daily_quiz_id))
+                    .where.not(posts: { post_date: nil })
                     .order('RAND()')
                     .first
     
