@@ -1,6 +1,11 @@
 class QuizAttemptsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @quiz_attempts = current_user.quiz_attempts.order(created_at: :desc).includes(daily_quiz: :post)
+  end
+
+
   def new
     user_post_ids = current_user.posts.pluck(:id)
     
