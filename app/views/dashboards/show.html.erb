@@ -54,6 +54,7 @@
         <% end %>
         <p><strong>出題:</strong> <%= @latest_attempt.daily_quiz.question_text.truncate(30) %></p>
         <p><strong>あなたの解答:</strong> <%= @latest_attempt.user_answer %></p>
+        <p><strong>正解:</strong> <%= @latest_attempt.daily_quiz.correct_answer %></p>
       <% else %>
         <p>まだクイズに挑戦していません。</p>
       <% end %>
@@ -64,6 +65,10 @@
       <p class="score-display">
         <%= current_user.total_score %>点
       </p>
+    </div>
+    <div class="score-navigation">
+      <%= link_to "挑戦履歴を見る", quiz_attempts_path, class: "action-button" %>
+      <%= link_to "ランキングを見る", ranking_path, class: "action-button primary-color" %>
     </div>
   </div>
 
