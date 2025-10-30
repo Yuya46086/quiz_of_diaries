@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     modified_post_params = post_params.merge(daily_quiz_attributes: quiz_params)
     @post = current_user.posts.build(modified_post_params)
     if @post.save
-      redirect_to posts_path, notice: "日記とクイズを投稿しました！"
+      redirect_to posts_path(@post), notice: "日記の投稿とクイズの作成に成功しました！新しいクイズに挑戦してみましょう！"
     else
       render :new, status: :unprocessable_entity
     end
