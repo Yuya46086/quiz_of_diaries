@@ -34,13 +34,19 @@ class QuizAttemptsController < ApplicationController
     is_correct = normalize_answer(@quiz_attempt.user_answer) == normalize_answer(correct_answer)
 
     @quiz_attempt.is_correct = is_correct
-    @quiz_attempt.score_awarded = is_correct ? 10 : 0
+    
+    if is_correct
+      @quiz_attempt.score_awarded = @quiz_attempt.calculate_score
+    else
+      @quiz_attempt.score_awarded = 0
+    end
 
     @quiz_attempt.attempt_date = Date.current
     @quiz_attempt.question_order = 1
 
     if @quiz_attempt.save
-      result_message = @quiz_attempt.is_correct ? "大正解！🎉 10点を獲得しました！" : "残念、不正解です。😥"
+      score = @quiz_attempt.score_awarded
+      result_message = @quiz_attempt.is_correct ? "大正解！🎉 #{score}点を獲得しました！" : "残念、不正解です。😥"
       redirect_to root_path, notice: result_message
     else
       @daily_quiz = daily_quiz
