@@ -252,3 +252,42 @@ div.field_with_errors input[type="date"] {
     margin-top: 10px;
     margin-bottom: 20px;
 }
+
+/* 日記一覧ページのカードスタイルを修正 */
+.postsIndex__postCard {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s;
+}
+
+.postsIndex__link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  padding: 15px 20px;
+  width: 100%;
+}
+
+/* ホバーでカード全体が強調されるように */
+.postsIndex__postCard:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f0f8ff;
+}
+
+/* 日付を強調する */
+.postsIndex__date {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #007bff;
+  flex-grow: 1;
+  text-align: left;
+}
+
+/* 日付が未設定の場合のスタイル（もしあれば） */
+.postsIndex__date:has(> .date-unset) {
+  color: #dc3545;
+}
