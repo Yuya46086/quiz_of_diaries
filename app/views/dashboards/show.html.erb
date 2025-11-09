@@ -8,23 +8,6 @@
       <%= link_to "日記一覧を見る", posts_path, class: "action-button" %>
     </div>
 
-    <div class="latest-post-preview">
-      <h3>最新の日記</h3>
-      <% latest_post = current_user.posts.order(post_date: :desc).first %>
-      <% if latest_post.present? %>
-        <p>
-          <strong>日付:</strong> <%= latest_post.post_date.strftime("%Y/%m/%d") %>
-        </p>
-        <p class="content-preview">
-          <%= latest_post.content.truncate(50) %>
-        </p>
-        <%= link_to "続きを読む", post_path(latest_post) %>
-      <% else %>
-        <p>まだ日記はありません。新しい日記を投稿しましょう！</p>
-      <% end %>
-    </div>
-  </div>
-
   <hr>
 
   <div class="quiz-section">
@@ -41,23 +24,6 @@
         <%= link_to '新しい日記を投稿する', new_post_path, class: "action-button secondary-color" %>
       <% end %>
       <p>（挑戦したクイズは、しばらく出題されません）</p>
-    </div>
-
-    <div class="score-actions">
-      <h3>最新のクイズ結果</h3>
-      <%# @latest_attempt はコントローラーで取得済み %>
-      <% if @latest_attempt.present? %>
-        <% if @latest_attempt.is_correct %>
-          <p class="result-message correct">🎉 **正解です！** <%= @latest_attempt.score_awarded %>点を獲得しました！</p>
-        <% else %>
-          <p class="result-message incorrect">😥 **不正解です。** 0点でした。</p>
-        <% end %>
-        <p><strong>出題:</strong> <%= @latest_attempt.daily_quiz.question_text.truncate(30) %></p>
-        <p><strong>あなたの解答:</strong> <%= @latest_attempt.user_answer %></p>
-        <p><strong>正解:</strong> <%= @latest_attempt.daily_quiz.correct_answer %></p>
-      <% else %>
-        <p>まだクイズに挑戦していません。</p>
-      <% end %>
     </div>
 
     <div class="user-stats">
