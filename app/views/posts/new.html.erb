@@ -42,7 +42,7 @@
     <%= f.fields_for :daily_quiz, @post.daily_quiz || @post.build_daily_quiz do |q| %>
       <div class="<%= 'field-error' if q.object.errors.messages[:question_text].present? %>">
         <%= q.label :question_text, "質問文" %>
-        <%= q.text_field :question_text, placeholder: "例: あの時食べたものは？", class: "text-input" %>
+        <%= q.text_area :question_text, placeholder: "例: あの時食べたものは？", class: "text-area", raws: 3 %>
       </div>
 
       <div class="<%= 'field-error' if q.object.errors.messages[:correct_answer].present? %>">

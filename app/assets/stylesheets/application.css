@@ -291,3 +291,29 @@ div.field_with_errors input[type="date"] {
 .postsIndex__date:has(> .date-unset) {
   color: #dc3545;
 }
+
+/* フォームの標準入力フィールドとクイズの質問文の幅を広げる */
+.text-input {
+    width: 100%; /* 親コンテナの幅いっぱいに広げる */
+    max-width: 600px; /* ただし、最大幅を制限して巨大になりすぎるのを防ぐ */
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* パディングを含めて幅を計算 */
+}
+
+/* 日記本文のエリア (text-area) も再確認 */
+.text-area {
+    width: 100%;
+    max-width: 800px;
+    height: 200px; /* 高さを確保 */
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical; /* ユーザーが縦方向にリサイズできるようにする */
+}
