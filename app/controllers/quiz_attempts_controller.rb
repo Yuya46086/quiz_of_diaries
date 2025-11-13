@@ -60,6 +60,14 @@ class QuizAttemptsController < ApplicationController
   end
 
   def normalize_answer(answer)
-    answer.to_s.strip.gsub(/[　\s]/, '').downcase
+    normalized = answer.to_s
+                      .strip
+                      .gsub(/[　\s]/, '')
+                      .downcase
+
+    normalized.tr('ァ-ン', 'ぁ-ん')
+    normalized = normalized.gsub('事', 'こと')
+    normalized = normalized.gsub('時', 'とき') 
+    normalized = normalized.gsub('為', 'ため')
   end
 end
