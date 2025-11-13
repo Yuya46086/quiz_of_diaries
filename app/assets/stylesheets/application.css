@@ -317,3 +317,19 @@ div.field_with_errors input[type="date"] {
     box-sizing: border-box;
     resize: vertical; /* ユーザーが縦方向にリサイズできるようにする */
 }
+
+/* クイズ挑戦画面の写真ヒントのスタイル */
+.quiz-photo-hint {
+    text-align: center; /* 画像を中央寄せ */
+    margin: 15px 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.quiz-photo {
+    max-width: 80%; /* 幅を親要素の80%に制限 */
+    max-height: 350px; /* 高さを制限 */
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

@@ -12,6 +12,12 @@
         の日記より出題
       </h2>
       
+      <% if @daily_quiz.post.photo.attached? %>
+        <div class="quiz-photo-hint">
+          <%= image_tag @daily_quiz.post.photo, class: "quiz-photo" %>
+        </div>
+      <% end %>
+
       <div class="quizAttempt__postContent">
         <p><strong>日記本文:</strong></p>
         <% original_content = @daily_quiz.post.content %>
@@ -30,8 +36,7 @@
 
         <div class="field">
           <%= f.label :user_answer, "あなたの解答" %>
-          <%# ユーザーの解答を入力するフィールド %>
-          <%= f.text_field :user_answer, placeholder: "答えを入力", required: true, class: "text-inout" %>
+          <%= f.text_field :user_answer, placeholder: "答えを入力", required: true, class: "text-input" %>
         </div>
       </div>
     </div>
