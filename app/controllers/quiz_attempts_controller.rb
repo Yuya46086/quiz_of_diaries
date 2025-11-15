@@ -80,5 +80,6 @@ class QuizAttemptsController < ApplicationController
     normalized = normalized.gsub('事', 'こと')
     normalized = normalized.gsub('時', 'とき') 
     normalized = normalized.gsub('為', 'ため')
+    normalized = normalized.gsub(/[,\.、。！？()（）\[\]「」『』\-\=]/, '')
   end
 end
