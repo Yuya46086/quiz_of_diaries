@@ -31,7 +31,18 @@ class QuizAttemptsController < ApplicationController
     daily_quiz = @quiz_attempt.daily_quiz
     correct_answer = daily_quiz.correct_answer
 
-    is_correct = normalize_answer(@quiz_attempt.user_answer) == normalize_answer(correct_answer)
+    allowed_answers = [correct_answer]
+
+    if daily_quiz.alternate_answers.present?
+      alternate_list = daily_quiz.alternate_answers.split(',').map(&:strip)
+      allowed_answers.concat(alternate_list)
+    end
+
+    user_normalized_answer = normalize_answer(@quiz_attempt.user_answer)
+
+    is_correct = allowed_answers.any? do |answer|
+      normalize_answer(answer) == user_normalized_answer
+    end
 
     @quiz_attempt.is_correct = is_correct
     
