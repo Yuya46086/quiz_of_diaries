@@ -59,6 +59,11 @@
         <%= q.label :correct_answer, "正解の単語" %>
         <%= q.text_field :correct_answer, placeholder: "例: ラーメン", class: "text-input" %>
       </div>
+
+      <div class="field">
+        <%= q.label :alternate_answers, "別の正解（類義語など。カンマ区切りで入力）" %>
+        <%= q.text_field :alternate_answers, placeholder: "例: 麺,中華そば", class: "text-input" %>
+      </div>
     <% end %>
   </div>
 
