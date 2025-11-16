@@ -14,7 +14,7 @@
 <%= form_with model: @post, local: true, class: "postsNew__form" do |f| %>
 
   <div class="postsNew__diarySection">
-    <h2>1. 日記の記入（必須）</h2>
+    <h2>1. 日記の記入</h2>
 
     <div class="field">
       <%= f.label :post_date, "日付" %>
@@ -23,7 +23,7 @@
     </div>
 
     <div class="field">
-      <%= f.label :photo, "写真のアップロード（必須）" %>
+      <%= f.label :photo, "写真のアップロード" %>
       <%= f.file_field :photo, class: "text-input" %>
     </div>
 
@@ -36,7 +36,7 @@
   <hr>
 
   <div class="postsNew__quizSection">
-    <h2>2. クイズの作成（必須）</h2>
+    <h2>2. クイズの作成</h2>
     <p>日記本文から、穴埋めクイズとして出題したい内容を考えてください。</p>
 
     <%= f.fields_for :daily_quiz, @post.daily_quiz || @post.build_daily_quiz do |q| %>
